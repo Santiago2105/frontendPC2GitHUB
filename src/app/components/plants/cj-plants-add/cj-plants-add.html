@@ -1,0 +1,47 @@
+<h3 >Agregar una Planta</h3>
+<br>
+<form [formGroup]="crudForm">
+
+    <mat-form-field>
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="id" readonly="true">
+    </mat-form-field>
+<br>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name">        
+        <span style="color:red"  *ngIf="this.crudForm.get('name')?.hasError('required') && this.crudForm.get('name')?.touched " >Este campo es requerido</span>
+        <span style="color:red"  *ngIf="this.crudForm.get('name')?.hasError('minlength') && this.crudForm.get('name')?.touched " >Se requiere mínimo 4 caracteres</span>
+    </mat-form-field>    
+    
+    <br>
+    <mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <input matInput formControlName="description">
+        <span style="color:red"  *ngIf="this.crudForm.get('description')?.hasError('required') && this.crudForm.get('name')?.touched " >Este campo es requerido</span>
+        <span style="color:red"  *ngIf="this.crudForm.get('description')?.hasError('minlength') && this.crudForm.get('name')?.touched " >Se requiere mínimo 4 caracteres</span>
+        <span style="color:red"  *ngIf="this.crudForm.get('description')?.hasError('maxlength') && this.crudForm.get('name')?.touched " >El maximo de caracteres para la descripcion es 199</span>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Fecha de Fundación</mat-label>
+        <mat-datepicker #selectorDeFecha></mat-datepicker>
+        <input matInput formControlName="plantingDate" [matDatepicker]="selectorDeFecha">
+        <mat-datepicker-toggle matIconSuffix [for]="selectorDeFecha"></mat-datepicker-toggle>
+        <span style="color:red"  *ngIf="this.crudForm.get('plantingDate')?.hasError('required') && this.crudForm.get('name')?.touched " >Este campo es requerido</span>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+    </mat-form-field>
+<br>
+    <mat-checkbox matInput formControlName="exterior">¿Exterior?</mat-checkbox>
+<br>
+    <mat-checkbox matInput formControlName="interior">¿Interior?</mat-checkbox>
+<br>
+    <mat-checkbox matInput formControlName="producesFruit">¿Fruta Producida??</mat-checkbox>
+
+
+</form>
+
+<br>
+<button mat-raised-button routerLink="/plants-list">Cancelar</button>
+ | 
+<button mat-flat-button (click)="Grabar()" >Grabar</button>
