@@ -1,0 +1,64 @@
+<h3>Lista de Plantas</h3>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<br>
+<button mat-raised-button routerLink="/plants-add" >Agregar Nueva</button>
+<br>
+
+<table mat-table [dataSource]="dsPlants" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="plantingDate">
+    <th mat-header-cell *matHeaderCellDef> Fecha de Plantacion </th>
+    <td mat-cell *matCellDef="let element"> {{element.plantingDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="exterior">
+    <th mat-header-cell *matHeaderCellDef> ¿Exterior? </th>
+    <td mat-cell *matCellDef="let element"> {{element.exterior?"Si":"No"}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="interior">
+    <th mat-header-cell *matHeaderCellDef> ¿Interior? </th>
+    <td mat-cell *matCellDef="let element"> {{element.interior?"Si":"No"}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="producesFruit">
+    <th mat-header-cell *matHeaderCellDef> ¿Fruta Producida? </th>
+    <td mat-cell *matCellDef="let element"> {{element.producesFruit?"Si":"No"}} </td>
+  </ng-container>
+
+
+
+  <ng-container matColumnDef="opciones">
+    <th mat-header-cell *matHeaderCellDef> Opciones </th>
+    <td mat-cell *matCellDef="let element"> 
+      <a style="cursor: pointer;" (click)="Borrar(element.id)"><mat-icon>delete</mat-icon></a>
+    </td>
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
